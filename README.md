@@ -1,9 +1,11 @@
-# convert all files in a directory
+# Convert all files in a directory
 
 This action will convert all 3D files in a directory to your desired format.
+You will need to generate a `KITTYCAD_API_TOKEN` [here](https://kittycad.io/account) and add it to your repo's secrets
 
+Example usage:
 ```yml
-name: "test converting files"
+name: Convert files
 on:
     pull_request:
 jobs:

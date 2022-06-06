@@ -1,5 +1,8 @@
-name: 'convert-3d-files'
-description: 'Convert 3D files'
+name: Convert 3D files directory with KittyCAD
+description: Convert all 3D files in a given directory to your desired output
+branding:
+  icon: box
+  color: gray-dark
 
 inputs:
   kittycad-token:
