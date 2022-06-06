@@ -1,0 +1,34 @@
+name: "test converting directory"
+
+on:
+    pull_request:
+
+jobs:
+  test-convert-directory-action:
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        id: convert-dir
+        with:
+          kittycad-token: ${{ secrets.KITTYCAD_API_TOKEN }}
+          input-directory: test-files
+          output-directory: test-files-out
+          conversion-type: fbx
+      - name: check-files-converted
+        run: |
+            ls test-files-out
+            all_exist () {
+              local filename
+              for filename; do
+                  test -f "$filename" && continue
+                  echo "$0: $filename does not exist - aborting" >&2
+                  return 1
+              done
+              return 0
+            }
+            all_exist test-files-out/test-obj.fbx test-files-out/test-stl.fbx && echo "$0: all files exist" >&2
+        shell: bash

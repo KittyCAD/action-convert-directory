@@ -1,0 +1,42 @@
+name: Convert 3D files directory with KittyCAD
+description: Convert all 3D files in a given directory to your desired output
+branding:
+  icon: box
+  color: gray-dark
+
+inputs:
+  kittycad-token:
+    required: true
+    description: 'KittyCAD API TOKEN, generated at https://kittycad.io/account'
+  input-directory:
+    required: true
+    description: 'folder containing files to be converted, allowed files are dae, fbx, obj, step and stl'
+  output-directory:
+    required: true
+    description: 'folder where converted files will be put'
+  conversion-type:
+    required: true
+    description: 'options are dae, fbx, fbxb, obj, step and stl'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: KittyCAD/install-cli@v0.0.4
+    - name: convert files
+      id: convert-files
+      run: |
+        mkdir -p "${{ inputs.output-directory }}"
+        FILES_TO_CONVERT=$(find ${{ inputs.input-directory }} -type f \( -name "*.dae" -o -name "*.fbx" -o -name "*.obj" -o -name "*.step" -o -name "*.stl" \))
+
+        echo "converting:\n$FILES_TO_CONVERT\n"
+
+        for FILE in ${FILES_TO_CONVERT[@]}
+        do
+            BASENAME=$(basename $FILE)
+            RESULT=$(kittycad file convert $FILE "${{ inputs.output-directory }}/${BASENAME%.*}.${{ inputs.conversion-type }}")
+            echo "$RESULT\n"
+        done
+        echo "Done converting files!"
+      shell: bash
+      env: 
+        KITTYCAD_API_TOKEN: ${{ inputs.kittycad-token }}
