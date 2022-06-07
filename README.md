@@ -23,4 +23,4 @@ jobs:
         run: ls converted-files-path # prints converted file names
 ```
 
-Be sure to look our [other Github Actions](https://github.com/marketplace?type=actions&query=kittycad+).
+Be sure to look at our [other Github Actions](https://github.com/marketplace?type=actions&query=kittycad+).
