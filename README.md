@@ -1,7 +1,7 @@
 # Convert all files in a directory
 
 This action will convert all 3D files in a directory to your desired format.
-You will need to generate a `KITTYCAD_API_TOKEN` [here](https://kittycad.io/account) and add it to your repo's secrets
+You will need to generate a `KITTYCAD_TOKEN` [here](https://kittycad.io/account) and add it to your repo's secrets
 
 Example usage:
 ```yml
@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: KittyCAD/action-convert-directory@v0.0.2
         with:
-          kittycad-token: ${{ secrets.KITTYCAD_API_TOKEN }}
+          kittycad-token: ${{ secrets.KITTYCAD_TOKEN }}
           input-directory: original-files-path
           output-directory: converted-files-path
           conversion-type: fbx
