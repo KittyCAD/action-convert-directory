@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: KittyCAD/ts-actions/convert-dir@v0.2.2
+      - uses: KittyCAD/action-convert-directory@v0.0.2
         with:
           kittycad-token: ${{ secrets.KITTYCAD_API_TOKEN }}
           input-directory: original-files-path
