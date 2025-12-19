@@ -25,7 +25,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: KittyCAD/action-install-cli@v0.2.12
+    - uses: KittyCAD/action-install-cli@9602a13ea74a2b9b4f2c0857be6a3b3457b5fd24
     - name: convert files
       id: convert-files
       run: |
