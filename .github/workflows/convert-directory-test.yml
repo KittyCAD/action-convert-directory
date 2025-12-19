@@ -15,6 +15,7 @@ jobs:
         id: convert-dir
         with:
           kittycad-token: ${{ secrets.ZOO_API_TOKEN }}
+          host: https://api.dev.zoo.dev
           input-directory: test-files
           output-directory: test-files-out
           conversion-type: fbx
