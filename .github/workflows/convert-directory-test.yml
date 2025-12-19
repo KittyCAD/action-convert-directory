@@ -11,6 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
+      - run: mkdir test-files-out
       - uses: ./
         id: convert-dir
         with:
