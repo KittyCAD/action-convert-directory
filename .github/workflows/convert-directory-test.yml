@@ -14,7 +14,7 @@ jobs:
       - uses: ./
         id: convert-dir
         with:
-          kittycad-token: ${{ secrets.KITTYCAD_API_TOKEN }}
+          kittycad-token: ${{ secrets.ZOO_API_TOKEN }}
           input-directory: test-files
           output-directory: test-files-out
           conversion-type: fbx
