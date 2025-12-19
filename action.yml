@@ -38,6 +38,7 @@ runs:
         do
             BASENAME=$(basename $FILE)
             RESULT=$(zoo file convert --output-format ${{ inputs.conversion-type }} $FILE "${{ inputs.output-directory }}")
+            mv "${{ inputs.output-directory }}/converted.${{ inputs.conversion-type }}" "${{ inputs.output-directory }}/${BASENAME%.*}.${{ inputs.conversion-type }}"
             echo "$RESULT\n"
         done
         echo "Done converting files!"
