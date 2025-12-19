@@ -17,11 +17,15 @@ inputs:
   conversion-type:
     required: true
     description: 'options are dae, fbx, fbxb, obj, step and stl'
+  host:
+    required: false
+    default: https://api.zoo.dev
+    description: 'Host override. Unstable API; do not use.'
 
 runs:
   using: 'composite'
   steps:
-    - uses: KittyCAD/action-install-cli@v0.1.1
+    - uses: KittyCAD/action-install-cli@9602a13ea74a2b9b4f2c0857be6a3b3457b5fd24
     - name: convert files
       id: convert-files
       run: |
@@ -33,10 +37,12 @@ runs:
         for FILE in ${FILES_TO_CONVERT[@]}
         do
             BASENAME=$(basename $FILE)
-            RESULT=$(kittycad file convert $FILE "${{ inputs.output-directory }}/${BASENAME%.*}.${{ inputs.conversion-type }}")
+            RESULT=$(zoo file convert --output-format ${{ inputs.conversion-type }} $FILE "${{ inputs.output-directory }}")
+            mv "${{ inputs.output-directory }}/converted.${{ inputs.conversion-type }}" "${{ inputs.output-directory }}/${BASENAME%.*}.${{ inputs.conversion-type }}"
             echo "$RESULT\n"
         done
         echo "Done converting files!"
       shell: bash
       env: 
-        KITTYCAD_TOKEN: ${{ inputs.kittycad-token }}
+        ZOO_API_TOKEN: ${{ inputs.kittycad-token }}
+        ZOO_HOST: ${{ inputs.host }}
