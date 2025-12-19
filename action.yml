@@ -37,7 +37,7 @@ runs:
         for FILE in ${FILES_TO_CONVERT[@]}
         do
             BASENAME=$(basename $FILE)
-            RESULT=$(kittycad file convert $FILE "${{ inputs.output-directory }}/${BASENAME%.*}.${{ inputs.conversion-type }}")
+            RESULT=$(kittycad file convert --output-format ${{ inputs.conversion-type }} $FILE "${{ inputs.output-directory }}/${BASENAME%.*}.${{ inputs.conversion-type }}")
             echo "$RESULT\n"
         done
         echo "Done converting files!"
