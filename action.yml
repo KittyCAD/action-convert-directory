@@ -21,7 +21,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: KittyCAD/action-install-cli@v0.1.1
+    - uses: KittyCAD/action-install-cli@v0.2.12
     - name: convert files
       id: convert-files
       run: |
@@ -39,4 +39,4 @@ runs:
         echo "Done converting files!"
       shell: bash
       env: 
-        KITTYCAD_TOKEN: ${{ inputs.kittycad-token }}
+        ZOO_API_TOKEN: ${{ inputs.kittycad-token }}
